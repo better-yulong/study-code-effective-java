@@ -7,22 +7,22 @@ public class BLogger implements Logger {
 	}
 
 	public void debug(String logger) {
-		System.out.println("ALogger-->debug: " + logger);
+		System.out.println("BLogger-->debug: " + logger);
 		
 	}
 
 	public void info(String logger) {
-		System.out.println("ALogger-->info: " + logger);
+		System.out.println("BLogger-->info: " + logger);
 		
 	}
 
 	public void warn(String logger) {
-		System.out.println("ALogger-->warn: " + logger);
+		System.out.println("BLogger-->warn: " + logger);
 		
 	}
 
 	public void error(String logger) {
-		System.out.println("ALogger-->error: " + logger);
+		System.out.println("BLogger-->error: " + logger);
 		
 	}
 
