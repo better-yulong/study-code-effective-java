@@ -3,16 +3,50 @@ package com.zyl.base.io;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
+import java.util.Random;
 
 public class SocketClient {
 
 	public static void main(String[] args) throws Exception, IOException {
-		Socket socket = new Socket("127.0.0.7",8888);
+		Socket socket = new Socket("127.0.0.1",9006);
 		OutputStream out = socket.getOutputStream();
-		out.write("hello...".getBytes());
+		long times = System.currentTimeMillis();
+		for(int i=0;i<300000;i++){
+			out.write(("hello..." + times).getBytes());
+			System.out.println("hello..." + times);
+			out.flush();
+		}
+		out.write(("EOF").getBytes());
+		out.flush();
 		out.close();
-
+		socket.close();
 	}
 
 }
+
+/**
+运行SocketServer后，依次分别运行3次SocketClient 结果分析下几点：
+1. SocketServer连接请求队列的长度设为 2（new ServerSocket(9005,2)，第二个参数），第3次运行SocketClient时因前2次运行的请求仍在运行中使得服务器队列已先被前2次SocketClient占用，直接拒绝：
+```language
+Exception in thread "main" java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source)
+	at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+```
+2. SocketClient每次写入后均flush，SocketServer打印为System.out.println，预期是期望SocketServer每次打印"hello...1557996285019"能自动换行，并在最后一行打印出"EOF"; 然而实际呢？实际SocketServer会把同一SocketClient的所有输入的"hello...1557996285019"及最后的"EOF"合并一行输出，类似：
+```language
+hello...1557995541663hello...1557995541663hello...1557995541663 中间还有无数个hello....EOF
+```
+其原因呢？时OutputStream为abstract 抽象类，而通过debug发现SocketClient类的socket.getOutputStream()实际返回的是 java.net.SocketOutputStream实例， 查看源码发现SocketOutputStream类及其父类并没有重写 OutputStream类的flush()方法（空方法实现）；最终只有SocketClient的out.close()方法：会自动刷新缓冲区然后关闭流对象。
+```language
+   OutputStream类flush默认空实现
+   public void flush() throws IOException {
+   }
+```
+合并一行输出呢？其实是因为SocketClient缓冲，直到close方法调用时flush才会作为一个完整的数据包发送到SocketServer。
+3. 异常场景：
+   1. 如若未先运行SocketServer而直接执行SocketClient报错：Connection refused: connect ；
+   2. 如若如SocketClient正在运行的请求已达到SocketServer请求队列长度，报错：Connection refused: connect；
+   3. 如若SocketClient在write循环执行（还未执行到close()方法）， SocketServer突然关闭SocketClient会报错：Connection reset by peer: socket write error；但若相反是SocketClient突然关闭SocketServer则会报错java.net.SocketException: Connection reset
+
+ * */
