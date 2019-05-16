@@ -1,0 +1,168 @@
+Classfile /D:/work/workspace/work2/JVMDemo/src/com/test/jvm/DirectMemoryOOM.class
+  Last modified 2019-1-3; size 1244 bytes
+  MD5 checksum 75b6883fd29582131b343777fad524bf
+  Compiled from "DirectMemoryOOM.java"
+public class com.test.jvm.DirectMemoryOOM
+  SourceFile: "DirectMemoryOOM.java"
+  InnerClasses:
+       static #21= #12 of #19; //DirectOOMThread=class com/test/jvm/DirectMemoryOOM$DirectOOMThread of class com/test/jvm/DirectMemoryOOM
+  minor version: 0
+  major version: 51
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+   #1 = Methodref          #20.#34        //  java/lang/Object."<init>":()V
+   #2 = String             #35            //  java.nio.Bits
+   #3 = Methodref          #36.#37        //  java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+   #4 = String             #38            //  maxMemory
+   #5 = Methodref          #36.#39        //  java/lang/Class.getDeclaredField:(Ljava/lang/String;)Ljava/lang/reflect/Field;
+   #6 = Methodref          #40.#41        //  java/lang/reflect/Field.setAccessible:(Z)V
+   #7 = String             #42            //  reservedMemory
+   #8 = Methodref          #40.#43        //  java/lang/reflect/Field.get:(Ljava/lang/Object;)Ljava/lang/Object;
+   #9 = Class              #44            //  java/lang/Long
+  #10 = Fieldref           #45.#46        //  java/lang/System.out:Ljava/io/PrintStream;
+  #11 = Methodref          #47.#48        //  java/io/PrintStream.println:(Ljava/lang/Object;)V
+  #12 = Class              #49            //  com/test/jvm/DirectMemoryOOM$DirectOOMThread
+  #13 = Methodref          #12.#34        //  com/test/jvm/DirectMemoryOOM$DirectOOMThread."<init>":()V
+  #14 = Methodref          #12.#50        //  com/test/jvm/DirectMemoryOOM$DirectOOMThread.start:()V
+  #15 = Fieldref           #51.#52        //  java/util/concurrent/TimeUnit.SECONDS:Ljava/util/concurrent/TimeUnit;
+  #16 = Long               100l
+  #18 = Methodref          #51.#53        //  java/util/concurrent/TimeUnit.sleep:(J)V
+  #19 = Class              #54            //  com/test/jvm/DirectMemoryOOM
+  #20 = Class              #55            //  java/lang/Object
+  #21 = Utf8               DirectOOMThread
+  #22 = Utf8               InnerClasses
+  #23 = Utf8               <init>
+  #24 = Utf8               ()V
+  #25 = Utf8               Code
+  #26 = Utf8               LineNumberTable
+  #27 = Utf8               main
+  #28 = Utf8               ([Ljava/lang/String;)V
+  #29 = Utf8               Exceptions
+  #30 = Class              #56            //  java/lang/Exception
+  #31 = Class              #57            //  java/lang/IllegalAccessException
+  #32 = Utf8               SourceFile
+  #33 = Utf8               DirectMemoryOOM.java
+  #34 = NameAndType        #23:#24        //  "<init>":()V
+  #35 = Utf8               java.nio.Bits
+  #36 = Class              #58            //  java/lang/Class
+  #37 = NameAndType        #59:#60        //  forName:(Ljava/lang/String;)Ljava/lang/Class;
+  #38 = Utf8               maxMemory
+  #39 = NameAndType        #61:#62        //  getDeclaredField:(Ljava/lang/String;)Ljava/lang/reflect/Field;
+  #40 = Class              #63            //  java/lang/reflect/Field
+  #41 = NameAndType        #64:#65        //  setAccessible:(Z)V
+  #42 = Utf8               reservedMemory
+  #43 = NameAndType        #66:#67        //  get:(Ljava/lang/Object;)Ljava/lang/Object;
+  #44 = Utf8               java/lang/Long
+  #45 = Class              #68            //  java/lang/System
+  #46 = NameAndType        #69:#70        //  out:Ljava/io/PrintStream;
+  #47 = Class              #71            //  java/io/PrintStream
+  #48 = NameAndType        #72:#73        //  println:(Ljava/lang/Object;)V
+  #49 = Utf8               com/test/jvm/DirectMemoryOOM$DirectOOMThread
+  #50 = NameAndType        #74:#24        //  start:()V
+  #51 = Class              #75            //  java/util/concurrent/TimeUnit
+  #52 = NameAndType        #76:#77        //  SECONDS:Ljava/util/concurrent/TimeUnit;
+  #53 = NameAndType        #78:#79        //  sleep:(J)V
+  #54 = Utf8               com/test/jvm/DirectMemoryOOM
+  #55 = Utf8               java/lang/Object
+  #56 = Utf8               java/lang/Exception
+  #57 = Utf8               java/lang/IllegalAccessException
+  #58 = Utf8               java/lang/Class
+  #59 = Utf8               forName
+  #60 = Utf8               (Ljava/lang/String;)Ljava/lang/Class;
+  #61 = Utf8               getDeclaredField
+  #62 = Utf8               (Ljava/lang/String;)Ljava/lang/reflect/Field;
+  #63 = Utf8               java/lang/reflect/Field
+  #64 = Utf8               setAccessible
+  #65 = Utf8               (Z)V
+  #66 = Utf8               get
+  #67 = Utf8               (Ljava/lang/Object;)Ljava/lang/Object;
+  #68 = Utf8               java/lang/System
+  #69 = Utf8               out
+  #70 = Utf8               Ljava/io/PrintStream;
+  #71 = Utf8               java/io/PrintStream
+  #72 = Utf8               println
+  #73 = Utf8               (Ljava/lang/Object;)V
+  #74 = Utf8               start
+  #75 = Utf8               java/util/concurrent/TimeUnit
+  #76 = Utf8               SECONDS
+  #77 = Utf8               Ljava/util/concurrent/TimeUnit;
+  #78 = Utf8               sleep
+  #79 = Utf8               (J)V
+{
+  public com.test.jvm.DirectMemoryOOM();
+    Signature: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0       
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return        
+      LineNumberTable:
+        line 8: 0
+        line 49: 4
+
+  public static void main(java.lang.String[]) throws java.lang.Exception, java.lang.IllegalAccessException;
+    Signature: ([Ljava/lang/String;)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=7, args_size=1
+         0: ldc           #2                  // String java.nio.Bits
+         2: invokestatic  #3                  // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+         5: astore_1      
+         6: aload_1       
+         7: ldc           #4                  // String maxMemory
+         9: invokevirtual #5                  // Method java/lang/Class.getDeclaredField:(Ljava/lang/String;)Ljava/lang/reflect/Field;
+        12: astore_2      
+        13: aload_2       
+        14: iconst_1      
+        15: invokevirtual #6                  // Method java/lang/reflect/Field.setAccessible:(Z)V
+        18: aload_1       
+        19: ldc           #7                  // String reservedMemory
+        21: invokevirtual #5                  // Method java/lang/Class.getDeclaredField:(Ljava/lang/String;)Ljava/lang/reflect/Field;
+        24: astore_3      
+        25: aload_3       
+        26: iconst_1      
+        27: invokevirtual #6                  // Method java/lang/reflect/Field.setAccessible:(Z)V
+        30: aload_2       
+        31: aconst_null   
+        32: invokevirtual #8                  // Method java/lang/reflect/Field.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        35: checkcast     #9                  // class java/lang/Long
+        38: astore        4
+        40: getstatic     #10                 // Field java/lang/System.out:Ljava/io/PrintStream;
+        43: aload         4
+        45: invokevirtual #11                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+        48: new           #12                 // class com/test/jvm/DirectMemoryOOM$DirectOOMThread
+        51: dup           
+        52: invokespecial #13                 // Method com/test/jvm/DirectMemoryOOM$DirectOOMThread."<init>":()V
+        55: astore        5
+        57: aload         5
+        59: invokevirtual #14                 // Method com/test/jvm/DirectMemoryOOM$DirectOOMThread.start:()V
+        62: getstatic     #15                 // Field java/util/concurrent/TimeUnit.SECONDS:Ljava/util/concurrent/TimeUnit;
+        65: ldc2_w        #16                 // long 100l
+        68: invokevirtual #18                 // Method java/util/concurrent/TimeUnit.sleep:(J)V
+        71: aload_3       
+        72: aconst_null   
+        73: invokevirtual #8                  // Method java/lang/reflect/Field.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        76: checkcast     #9                  // class java/lang/Long
+        79: astore        6
+        81: getstatic     #10                 // Field java/lang/System.out:Ljava/io/PrintStream;
+        84: aload         6
+        86: invokevirtual #11                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+        89: return        
+      LineNumberTable:
+        line 31: 0
+        line 33: 6
+        line 34: 13
+        line 35: 18
+        line 36: 25
+        line 39: 30
+        line 40: 40
+        line 41: 48
+        line 42: 57
+        line 43: 62
+        line 44: 71
+        line 45: 81
+        line 47: 89
+    Exceptions:
+      throws java.lang.Exception, java.lang.IllegalAccessException
+}

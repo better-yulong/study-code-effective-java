@@ -12,6 +12,7 @@ public class LoggerTest {
 		logger.info("this is use info... ");
 		logger.warn("this is use warn... ");
 		logger.error("this is use error... ");
+		LoggerFactory.logAllInfo("logger list test");
 	}
 
 }

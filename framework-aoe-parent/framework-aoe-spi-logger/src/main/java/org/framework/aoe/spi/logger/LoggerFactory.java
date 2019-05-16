@@ -26,6 +26,12 @@ public class LoggerFactory {
 		return list!=null?list.get(0):null;
 	}
 	
+	public static void logAllInfo(String info){
+		for(Logger logger:list){
+			logger.info("logAllInfo:" + info);
+		}
+	}
+	
 /*	
  * 如若多个实现只需返回一个，可参考如上添加根据入参返回不同实现。
  * 而如若需同时支持从个实现，而考虑基于参考如下实现类   类责任链模式 ，
