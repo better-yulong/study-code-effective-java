@@ -7,6 +7,9 @@ import java.io.Reader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/*解决粘包：通过/n分隔
+ * 
+ * **/
 public class SocketServer2 {
 
 	public static void main(String[] args) throws Exception {
@@ -25,25 +28,22 @@ public class SocketServer2 {
 			BufferedReader br = new BufferedReader(reader);
 			String line ;
 			while((line=br.readLine())!=null){
-				System.out.println(line);
-				/*if("EOF".equals(line)){
-					eof = true;
-					break;
-				}*/
-				
+				String[] lines = line.split("/n");
+				for(String str:lines)
+					System.out.println(str);
 			}
-			/*if(eof){
-				br.close();
-				break;
-			}*/
 		}
-		/*System.out.println("close");
-		serverSocket.close();*/
-
 	}
 
 }
 
 /***
- * hello...1557995541663hello...1557995541663hello...1557995541663EOF 
+ * 运行结果：
+hello...1558332560890
+/n
+hello...1558332560890
+/n
+hello...1558332560890
+/n
+hello...1558332560890
  */
