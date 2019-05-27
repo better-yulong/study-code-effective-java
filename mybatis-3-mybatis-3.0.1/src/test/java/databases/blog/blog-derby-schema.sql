@@ -4,8 +4,8 @@ DROP TABLE tag;
 DROP TABLE post;
 DROP TABLE blog;
 DROP TABLE author;
---fix1: zyl ,fix:add drop table node
---DROP TABLE node;
+--fix1: zyl ,fix1:add drop table node
+DROP TABLE node;
 DROP PROCEDURE selectTwoSetsOfAuthors;
 DROP PROCEDURE insertAuthor;
 DROP PROCEDURE selectAuthorViaOutParams;
