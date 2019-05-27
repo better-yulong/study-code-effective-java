@@ -9,7 +9,9 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 /***
@@ -42,7 +44,7 @@ public class NIOServer {
 			Iterator<SelectionKey> iteratorKeys = selectionKeys.iterator();
 			while(iteratorKeys.hasNext()){
 				SelectionKey selectionKey = iteratorKeys.next();
-				//iteratorKeys.remove();// fix-2
+				iteratorKeys.remove();// fix-2
 				if(selectionKey.isAcceptable()){
 					 System.out.println("client accept....");
 					ServerSocketChannel clientSocket = (ServerSocketChannel) selectionKey.channel();
@@ -52,7 +54,7 @@ public class NIOServer {
 				}else if(selectionKey.isReadable()){
 					 System.out.println("client read....");
 					SocketChannel clientSocketChannel = (SocketChannel) selectionKey.channel();
-					System.out.println(readData(clientSocketChannel));
+					readData(clientSocketChannel);
 					clientSocketChannel.close();
 				}
 				//iteratorKeys.remove();// fix-1
@@ -60,9 +62,11 @@ public class NIOServer {
 		}
 	}
 
-	private static  String readData(SocketChannel socketChannel) throws IOException{
+	private static  void readData(SocketChannel socketChannel) throws IOException{
 		ByteBuffer byteBuffer = ByteBuffer.allocateDirect(1024);
-		StringBuilder builder = new StringBuilder();
+		StringBuilder builder = null;
+		List<Entry> list = new ArrayList<Entry>();
+		
 		while(true){
 			byteBuffer.clear();
 			int n = socketChannel.read(byteBuffer);
@@ -71,13 +75,100 @@ public class NIOServer {
 			}
 			byteBuffer.flip();
 			int limit = byteBuffer.limit();
-			char[] dst = new char[limit];
+			int len_index = 0 ;
+			int data_index = 0 ;
+			int entry_index = 0 ;
+			boolean lenFlag = true;
+			
 			for(int i=0 ; i<limit; i++){
-				dst[i] = (char) byteBuffer.get(i);
+				if(len_index<4&&lenFlag){
+					if(len_index==0){
+						Entry entry = new Entry();
+						list.add(entry);
+					}
+					list.get(entry_index).getLenByte()[len_index]= byteBuffer.get(i);
+					if(len_index==3){
+						int len = bytes2Int(list.get(entry_index).getLenByte());
+						list.get(entry_index).setLenInt(len);
+						list.get(entry_index).initDataByte(len);
+						lenFlag = false ;
+						len_index = 0 ;
+					}else{
+						len_index++;
+					}
+					
+				}else{
+					if(data_index<list.get(entry_index).getDataByte().length){
+						list.get(entry_index).getDataByte()[data_index] = (char) byteBuffer.get(i);
+						if(data_index== list.get(entry_index).getDataByte().length-1){
+							list.get(entry_index).setDataStr(String.valueOf(list.get(entry_index).getDataByte()));
+							data_index = 0 ;
+							entry_index++;
+							lenFlag = true ;
+						}else{
+							data_index++;
+						}
+					}
+						
+				}
 			}
-			builder.append(dst);
 			byteBuffer.clear();
 		}
-		return builder.toString();
+		for(Entry entry: list){
+			builder = new StringBuilder();
+			System.out.println(builder.append("length:").append(entry.lenInt).append(",String:").append(entry.dataStr));
+		}
+	}
+	
+	
+	private final static int bytes2Int(byte[] bytes){
+         int num=bytes[3] & 0xFF;
+         num |=((bytes[2] <<8)& 0xFF00);
+         num |=((bytes[1] <<16)& 0xFF0000);
+         num |=((bytes[0] <<24)& 0xFF0000);
+         return num;
+	}
+	
+	private static class Entry{
+		 byte[] lens = new byte[4];
+		 char[] data;
+		 
+		 int lenInt = 0 ;
+		 String dataStr ;
+		 
+		 
+		 private byte[] getLenByte(){
+			 return this.lens;
+		 }
+		 
+		private char[] initDataByte(int len){
+			data = new char[len];
+			return data;
+		}
+		
+		private char[] getDataByte(){
+			return this.data;
+		}
+		
+		private void setLenInt(int lenInt){
+			this.lenInt = lenInt ;
+		}
+		
+		private void setDataStr(String dataStr){
+			this.dataStr = dataStr ;
+		}
+		
 	}
 }
+
+/**
+ * 运行结果：
+client accept....
+client read....
+length:21,String:hello...1558607281166
+length:21,String:hello...1558607281166
+length:21,String:hello...1558607281166
+length:21,String:hello...1558607281166
+length:21,String:hello...1558607281166
+ * 
+ * */
