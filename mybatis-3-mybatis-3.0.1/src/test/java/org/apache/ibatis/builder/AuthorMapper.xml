@@ -7,7 +7,7 @@
 <mapper namespace="domain.blog.mappers.AuthorMapper">
 
   <parameterMap id="selectAuthor"
-                type="domain.blog.Author">
+                type="Author">
     <parameter property="id"/>
   </parameterMap>
 

@@ -460,6 +460,9 @@ public class SqlSessionTest extends BaseDataTest {
       AuthorMapper mapper = session.getMapper(AuthorMapper.class);
       Author author = mapper.selectAuthor(101);
       assertEquals(101, author.getId());
+    }catch(Exception e){
+    	System.out.println(e);
+    	
     } finally {
       session.close();
     }

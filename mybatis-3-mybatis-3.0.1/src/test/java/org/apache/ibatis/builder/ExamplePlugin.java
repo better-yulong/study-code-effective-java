@@ -1,16 +1,32 @@
 package org.apache.ibatis.builder;
 
+import org.apache.ibatis.executor.Executor;
+import org.apache.ibatis.executor.parameter.ParameterHandler;
+import org.apache.ibatis.executor.resultset.ResultSetHandler;
+import org.apache.ibatis.executor.statement.StatementHandler;
+import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.plugin.Intercepts;
 import org.apache.ibatis.plugin.Invocation;
 import org.apache.ibatis.plugin.Plugin;
+import org.apache.ibatis.plugin.Signature;
+import org.apache.ibatis.session.ResultHandler;
+import org.apache.ibatis.session.RowBounds;
 
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.Properties;
 
-@Intercepts({})
-public class ExamplePlugin implements Interceptor {
+@Intercepts({
+    @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class})
+    ,@Signature(type = ParameterHandler.class, method = "setParameters", args = {PreparedStatement.class})
+    ,@Signature(type = ResultSetHandler.class, method = "handleResultSets", args = {Statement.class})
+    ,@Signature(type = StatementHandler.class, method = "query", args = {Statement.class,ResultHandler.class})
+    })
+public class ExamplePlugin implements Interceptor { 
 
   public Object intercept(Invocation invocation) throws Throwable {
+	System.out.println("ExamplePlugin intercept:" + invocation.getTarget().getClass().getName() + ":" + invocation.getMethod().getName());
     return invocation.proceed();
   }
 
