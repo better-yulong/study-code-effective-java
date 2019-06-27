@@ -4,6 +4,14 @@
 
 <web-app>
   <display-name>spring3-analysis</display-name>
+<!--   <context-param>
+  	<param-name>contextConfigLocation</param-name>
+  	<param-value>/WEB-INF/classes/applicationContext.xml</param-value>
+  </context-param> -->
+  <context-param>
+  	<param-name>contextConfigLocation</param-name>
+  	<param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
   <listener>
     	<listener-class>com.framework.aoe.web.ContextLoaderListener</listener-class>
   </listener>

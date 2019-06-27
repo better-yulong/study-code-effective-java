@@ -9,16 +9,6 @@
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>3.1.0.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-			<version>3.1.0.RELEASE</version>
-		</dependency>
-		<dependency>
 			<groupId>com.aoe.framework</groupId>
 		    <artifactId>framework-aoe-web</artifactId>
 		    <version>0.0.1-SNAPSHOT</version>
