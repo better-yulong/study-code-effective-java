@@ -1,6 +1,8 @@
 # 忽略当前目录下的文件夹（看下面两行以“/”结尾表示忽略的是个文件夹）
 .metadata/
 RemoteSystemsTempFiles/
+.recommenders/
+Servers/
 
 # 忽略子目录下的文件夹
 **/.settings
