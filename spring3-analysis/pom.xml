@@ -13,6 +13,11 @@
 		    <artifactId>framework-aoe-web</artifactId>
 		    <version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.aoe.framework</groupId>
+		    <artifactId>framework-aoe-beans</artifactId>
+		    <version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		
 	</dependencies>
 	<build>
