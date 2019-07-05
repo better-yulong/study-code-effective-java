@@ -2,12 +2,37 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:aop="http://www.springframework.org/schema/aop"
 		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+		        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
 	<bean id="beanExample" name="beanExample" class="com.aoe.demo.sample1.BeanExample" init-method="init" destroy-method="destroy"></bean>
 	<bean id="beanExample1"  class="com.aoe.demo.sample1.BeanExample" init-method="init" destroy-method="destroy"></bean>
 	<bean name="beanExample2" class="com.aoe.demo.sample1.BeanExample" init-method="init" destroy-method="destroy"></bean>
-	<context:component-scan base-package="com.aoe;1.c d,f"/>
+	<context:component-scan base-package="com.aoe;1.c d,f,com.framework.aoe"/>
 	<bean name="simpleProcessorExample" class="com.framework.aoe.beans.factory.support.process1.SimpleProcessorExample"></bean>
+	
+<!-- 未基于接口
+	<aop:config>
+		<aop:aspect id="bizAspectjExampleAop" ref="aspectjExample">
+			<aop:pointcut id="pc" expression="execution(* *..BizAspectjExample.*(..))"/>
+			<aop:before pointcut-ref="pc" method="before" />
+			<aop:after pointcut-ref="pc" method="after" />
+			<aop:around pointcut-ref="pc" method="around"/>
+		</aop:aspect>
+	</aop:config>
+	 -->
+	
+	<aop:config>
+		<aop:aspect id="bizAspectjExampleAop" ref="aspectjExample">
+		    <!-- 将基于实现类BizAspectjExample修改为接口BizAspectjExampleInterf ; BizAspectjExample是BizAspectjExampleInterf的实现类  -->
+			<aop:pointcut id="pc" expression="execution(* *..BizAspectjExampleInterf.*(..))"/>
+			<aop:before pointcut-ref="pc" method="before" />
+			<aop:after pointcut-ref="pc" method="after" />
+			<aop:around pointcut-ref="pc" method="around"/>
+		</aop:aspect>
+	</aop:config>
+
+	<bean name="aspectjExample" class="com.aoe.demo.aop.AspectjExample"></bean>
 </beans>

@@ -8,12 +8,12 @@ public class SimpleProcessorExample implements BeanPostProcessor, InitializingBe
 
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 		System.out.println("SimpleProcessorExample postProcessBeforeInitialization。。。");
-		return null;
+		return bean;
 	}
 
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
 		System.out.println("SimpleProcessorExample postProcessAfterInitialization。。。");
-		return null;
+		return bean;
 	}
 
 	public void afterPropertiesSet() throws Exception {

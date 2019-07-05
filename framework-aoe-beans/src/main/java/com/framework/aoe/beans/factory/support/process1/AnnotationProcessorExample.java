@@ -10,12 +10,12 @@ public class AnnotationProcessorExample implements BeanPostProcessor, Initializi
 
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 		System.out.println("AnnotationProcessorExample postProcessBeforeInitialization。。。");
-		return null;
+		return bean;
 	}
 
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
 		System.out.println("AnnotationProcessorExample postProcessAfterInitialization。。。");
-		return null;
+		return bean;
 	}
 
 	public void afterPropertiesSet() throws Exception {

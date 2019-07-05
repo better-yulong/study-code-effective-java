@@ -15,4 +15,7 @@
   <listener>
     	<listener-class>com.framework.aoe.web.ContextLoaderListener</listener-class>
   </listener>
+<!--   <listener>
+    	<listener-class>com.aoe.demo.sample1.LazyInitTestLinstener</listener-class>
+  </listener> -->
 </web-app>
