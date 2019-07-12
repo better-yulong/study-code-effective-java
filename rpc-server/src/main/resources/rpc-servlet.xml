@@ -6,14 +6,7 @@
 		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 		        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
-<!-- 
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
-
-	<bean id="servletContextAwareBean" class="org.springframework.web.context.ServletContextAwareBean"/>
-	
-	<bean id="servletConfigAwareBean" class="org.springframework.web.context.ServletConfigAwareBean"/> -->
 	
 	<context:component-scan base-package="com.aoe.demo.springmvc"/>
-	<!-- <bean id="exampleController1"  name="/exampleController"  class="com.aoe.demo.springmvc.ExampleController"/> -->
 
 </beans>

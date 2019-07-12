@@ -2,19 +2,19 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.aoe.demo</groupId>
-  <artifactId>springmvc3-analysis</artifactId>
+  <artifactId>rpc-client</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>springmvc-analysis Maven Webapp</name>
+  <name>rmi-client Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
-    <dependency>
+        <dependency>
 		    <groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>3.1.0.RELEASE</version>
 		</dependency>
   </dependencies>
   <build>
-    <finalName>springmvc3-analysis</finalName>
+    <finalName>rmi-client</finalName>
   </build>
 </project>
