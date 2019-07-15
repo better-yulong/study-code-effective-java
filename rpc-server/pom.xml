@@ -1,20 +1,30 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.aoe.demo</groupId>
-  <artifactId>rpc-server</artifactId>
-  <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>rmi-server Maven Webapp</name>
-  <url>http://maven.apache.org</url>
-  <dependencies>
-        <dependency>
-		    <groupId>org.springframework</groupId>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.aoe.demo</groupId>
+	<artifactId>rpc-server</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>rpc-server Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>3.1.0.RELEASE</version>
 		</dependency>
-  </dependencies>
-  <build>
-    <finalName>rmi-server</finalName>
-  </build>
+		<dependency>
+			<groupId>com.caucho</groupId>
+			<artifactId>com.springsource.com.caucho</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.aoe.demo</groupId>
+			<artifactId>rpc-skeleton</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<finalName>rpc-server</finalName>
+	</build>
 </project>

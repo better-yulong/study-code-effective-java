@@ -7,6 +7,13 @@
 		        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 	
-	<context:component-scan base-package="com.aoe.demo.springmvc"/>
+	<context:component-scan base-package="com.aoe.demo.rpc"/>
+	
+	<bean name="hessianExampleService1"  class="com.aoe.demo.rpc.hessian.HessianExampleService1"></bean>
+	
+	<bean name="/hessianExampleService1" class="org.springframework.remoting.caucho.HessianServiceExporter">
+	    <property name="service" ref="hessianExampleService1"/>
+	    <property name="serviceInterface" value="com.aoe.demo.rpc.hessian.HessianExampleInterf1"/>
+	</bean>
 
 </beans>
