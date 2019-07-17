@@ -12,5 +12,6 @@
 	 <bean id="accountService" class="org.springframework.remoting.caucho.HessianProxyFactoryBean">
     	<property name="serviceUrl" value="http://localhost:8080/rpc-server/rpc/hessianExampleService1"/>
     	<property name="serviceInterface" value="com.aoe.demo.rpc.hessian.HessianExampleInterf1"/>
+    	<property name="hessian2" value="true"></property>
 	</bean> 
 </beans>

@@ -23,6 +23,11 @@
 			<artifactId>rpc-skeleton</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+			<version>2.5.3</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>rpc-server</finalName>
