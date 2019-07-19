@@ -914,13 +914,13 @@ public class ConfigTest {
         sc.setApplication(ac);
         sc.setRegistry(rc);
         sc.setInterface(DemoService.class.getName());
-        sc.setRef(new GenericService() {
+       /* sc.setRef(new GenericService() {
 
             @Override
             public Object $invoke(String method, String[] parameterTypes, Object[] args) throws GenericException {
                 return null;
             }
-        });
+        });*/
 
         ReferenceConfig<DemoService> ref = new ReferenceConfig<DemoService>();
         ref.setApplication(ac);
